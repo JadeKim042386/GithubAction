@@ -20,24 +20,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - name: Set up JDK 17
         uses: actions/setup-java@v1
         with:
           java-version: 17
-          
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
-        
+
       - name: Build with Gradle
         run: ./gradlew build
         shell: bash
-        
+
       # https://docs.github.com/ko/actions/learn-github-actions/variables#default-environment-variables
       - name: Make zip file
         run: zip -r ./GITHUB_SHA .
-        shell: bash  
+        shell: bash
       
       # https://github.com/aws-actions/configure-aws-credentials
       - name: Configure AWS credentials
