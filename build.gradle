@@ -31,3 +31,11 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+/**
+ * 빌드시 *_plain.jar 가 생기지 않게함
+ * *_plain.jar 는 실행시킬 수 없기 때문
+ */
+jar {
+	enabled = false
+}
