@@ -8,6 +8,7 @@ on:
 # 워크플로의 모든 작업 단계에서 사용할 수 있는 변수
 env:
   S3_BUCKET_NAME: s3-study-ju
+  RESOURCE_PATH: ./src/main/resources/application.yml
   CODE_DEPLOY_APPLICATION_NAME: CODE-DEPLOY-STUDY
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: CODE-DEPLOY-GROUP-STUDY
 
@@ -25,6 +26,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+
+      - name: Set yaml file
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: ${{ env.RESOURCE_PATH }}
+        env:
+          override.value: ${{ secrets.DI_FROM_SECRET }}
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
